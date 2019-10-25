@@ -1,0 +1,17 @@
+{
+  "name": "jun-world",
+  "version": "1.2.3",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "webpack",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "webpack": "^3.5.0"
+  }
+}
