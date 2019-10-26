@@ -18,7 +18,6 @@ window.onload = function() {
         can,
         rightBox,
         codeInputElement,
-        codeInputElement,
         dialogBox,
         runCodeBtn,
     };

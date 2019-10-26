@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Jun World</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            background: #999999;
+        }
+
+        #can {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        #rightBox {
+            position: absolute;
+            left: 830px;
+            top: 10px;
+        }
+
+        #codeInputElement {
+            min-width: 250px;
+            min-height: 500px;
+        }
+
+        #runCodeBtn {
+            width: 250px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #bottomBox {
+           position: absolute;
+           left: 10px;
+           top: 630px;
+           width: 800px;
+           height: 100px;
+           background: white;
+        }
+
+        #dialogBox {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id = "can" width = "800px" height = "600px"></canvas>
+
+<div id = "rightBox">
+    <textarea id = "codeInputElement"></textarea>
+    <br>
+    <br>
+    <button id = "runCodeBtn">Запустить код</button>
+</div>
+
+<div id = "bottomBox">
+    <div id = "dialogBox"></div>
+</div>
+
+<script src = "code.js"></script>
+    
+</body>
+</html>
