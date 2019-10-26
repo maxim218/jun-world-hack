@@ -14,6 +14,7 @@ window.onload = function() {
     const dialogBox = getElement("dialogBox");
     const runCodeBtn = getElement("runCodeBtn");
     const controlDialogBtn = getElement("controlDialogBtn");
+    const codeInputBox = getElement("codeInputBox");
 
     const domElements = {
         can,
@@ -23,6 +24,7 @@ window.onload = function() {
         dialogBox,
         runCodeBtn,
         controlDialogBtn,
+        codeInputBox,
     };
 
     const canvasManager = new CanvasManager(can);

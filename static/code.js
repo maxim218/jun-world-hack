@@ -73,6 +73,7 @@
 
 const GLOBAL = {
     dialog: true,
+    tests: undefined,
 };
 
 function global() {
@@ -106,6 +107,7 @@ window.onload = function() {
     const dialogBox = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("dialogBox");
     const runCodeBtn = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("runCodeBtn");
     const controlDialogBtn = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("controlDialogBtn");
+    const codeInputBox = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("codeInputBox");
 
     const domElements = {
         can,
@@ -115,6 +117,7 @@ window.onload = function() {
         dialogBox,
         runCodeBtn,
         controlDialogBtn,
+        codeInputBox,
     };
 
     const canvasManager = new __WEBPACK_IMPORTED_MODULE_1__CanvasManager__["a" /* default */](can);
@@ -252,7 +255,7 @@ function addEvents(domElements, actionObjects) {
         actionObjects.canvasManager.drawWallsArray(Object(__WEBPACK_IMPORTED_MODULE_0__getWallsArray__["a" /* default */])());
         actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero());
         actionObjects.canvasManager.drawTasksArray(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])());
-        actionObjects.heroControl.renderTask(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])(), domElements.dialogBox, domElements.controlDialogBtn);
+        actionObjects.heroControl.renderTask(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])(), domElements.dialogBox, domElements.rightBox);
     }, 30);
 }
 

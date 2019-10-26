@@ -19,6 +19,6 @@ export default function addEvents(domElements, actionObjects) {
         actionObjects.canvasManager.drawWallsArray(getWallsArray());
         actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero());
         actionObjects.canvasManager.drawTasksArray(getTaskersArr());
-        actionObjects.heroControl.renderTask(getTaskersArr(), domElements.dialogBox, domElements.controlDialogBtn);
+        actionObjects.heroControl.renderTask(getTaskersArr(), domElements.dialogBox, domElements.rightBox);
     }, 30);
 }
