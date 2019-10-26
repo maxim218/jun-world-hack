@@ -42,6 +42,8 @@ export default class HeroControl {
         tasksArray.forEach((task) => {
             if(this.hitPointWall(task, xx, yy) === true) {
                 dialogBox.innerHTML = task.text;
+                global().tests = task.testsArr;
+                global().friend = task;
             }
         });
 

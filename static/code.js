@@ -74,6 +74,7 @@
 const GLOBAL = {
     dialog: true,
     tests: undefined,
+    friend: undefined,
 };
 
 function global() {
@@ -90,7 +91,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getElement__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CanvasManager__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addEvents__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(8);
 
 
 
@@ -112,7 +113,6 @@ window.onload = function() {
     const domElements = {
         can,
         rightBox,
-        codeInputElement,
         codeInputElement,
         dialogBox,
         runCodeBtn,
@@ -234,6 +234,8 @@ class CanvasManager {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getWallsArray__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTaskersArr__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__runTest__ = __webpack_require__(7);
+
 
 
 
@@ -247,6 +249,11 @@ function addEvents(domElements, actionObjects) {
         Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().dialog = !Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().dialog;
     };
 
+    domElements.runCodeBtn.onclick = function() {
+        if(Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().tests) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__runTest__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().tests, domElements.codeInputElement);
+        }
+    };
 
     let intervalObj = setInterval(() => {
         actionObjects.heroControl.moveX(Object(__WEBPACK_IMPORTED_MODULE_0__getWallsArray__["a" /* default */])(), actionObjects.canvasManager);
@@ -302,11 +309,33 @@ function addToArr(x, y, text, testsArr) {
 }
 
 addToArr(690, 470, " Функция для расчета суммы чисел main(a, b) ", [
-
+    {
+        f: "main(2, 3)",
+        r: 5,
+    },
+    {
+        f: "main(12, 8)",
+        r: 20,
+    },
+    {
+        f: "main(-2, -3)",
+        r: -5,
+    }
 ]);
 
 addToArr(-30, 470, " Функция для получения наибольшего из двух чисел main(a, b) ", [
-
+    {
+        f: "main(9, 3)",
+        r: 9,
+    },
+    {
+        f: "main(2, 7)",
+        r: 7,
+    },
+    {
+        f: "main(5, 5)",
+        r: 5,
+    }
 ]);
 
 function getTaskersArr() {
@@ -315,6 +344,41 @@ function getTaskersArr() {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = runTest;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(0);
+
+
+
+
+function runTest(tests) {
+    const code = codeInputElement.value + "";
+
+    if(tests) {
+        let GOOD = true;
+
+        tests.forEach((test) => {
+            try {
+                const result = eval(code + "  " + test.f);
+                if(result !== test.r) GOOD = false;
+                console.log(result + "_____" + test.r);
+            } catch (err) {
+                GOOD = false;
+            }
+        });
+
+        if(GOOD === true) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().dialog = true;
+            Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().friend.y = 1000;
+        }
+    }
+}
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -363,6 +427,8 @@ class HeroControl {
         tasksArray.forEach((task) => {
             if(this.hitPointWall(task, xx, yy) === true) {
                 dialogBox.innerHTML = task.text;
+                Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().tests = task.testsArr;
+                Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().friend = task;
             }
         });
 

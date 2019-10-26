@@ -3,6 +3,7 @@
 import getWallsArray from "./getWallsArray";
 import getTaskersArr from "./getTaskersArr";
 import global from "./global";
+import runTest from "./runTest";
 
 export default function addEvents(domElements, actionObjects) {
     console.log("Call addEvents");
@@ -11,6 +12,11 @@ export default function addEvents(domElements, actionObjects) {
         global().dialog = !global().dialog;
     };
 
+    domElements.runCodeBtn.onclick = function() {
+        if(global().tests) {
+            runTest(global().tests, domElements.codeInputElement);
+        }
+    };
 
     let intervalObj = setInterval(() => {
         actionObjects.heroControl.moveX(getWallsArray(), actionObjects.canvasManager);
