@@ -1,5 +1,7 @@
 "use strict";
 
+import global from "./global";
+
 export default class HeroControl {
     constructor() {
         console.log("Create HeroControl");
@@ -32,6 +34,23 @@ export default class HeroControl {
         return false;
     }
 
+    renderTask(tasksArray, dialogBox, controlDialogBtn) {
+        const xx = this.hero.x + this.hero.size / 2;
+        const yy = this.hero.y + this.hero.size / 2;
+        dialogBox.innerHTML = "";
+
+        tasksArray.forEach((task) => {
+            if(this.hitPointWall(task, xx, yy) === true) {
+                dialogBox.innerHTML = task.text;
+            }
+        });
+
+        if(dialogBox.innerHTML) 
+            controlDialogBtn.hidden = false;
+        else 
+            controlDialogBtn.hidden = true;
+    }
+
     hitPointWithWallsArray(xx, yy, wallsArray) {
         for(let i = 0; i < wallsArray.length; i++) {
             if(this.hitPointWall(wallsArray[i], xx, yy) === true) {
@@ -52,66 +71,70 @@ export default class HeroControl {
     }
 
     moveX(wallsArray, canvasManager) {
-        if(this.a === true) {
-            const xx = this.hero.x - this.speedX;
-            const yy = this.hero.y + this.hero.size;
-            if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
-                this.moveLeft(canvasManager);
-            }
-        } 
+        if(global().dialog) {
+            if(this.a === true) {
+                const xx = this.hero.x - this.speedX;
+                const yy = this.hero.y + this.hero.size;
+                if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
+                    this.moveLeft(canvasManager);
+                }
+            } 
 
-        if(this.d === true) {
-            const xx = this.hero.x + this.hero.size + this.speedX;
-            const yy = this.hero.y + this.hero.size;
-            if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
-                this.moveRight(canvasManager);
+            if(this.d === true) {
+                const xx = this.hero.x + this.hero.size + this.speedX;
+                const yy = this.hero.y + this.hero.size;
+                if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
+                    this.moveRight(canvasManager);
+                }
             }
         }
     }
 
     moveY(wallsArray) {
-        if(this.w === true) {
-            if(parseInt(this.speedY) === 0) {
-                if(this.canJUMP === true) {
-                    this.speedY = -10;
-                    this.canJUMP = false;
+        if(global().dialog) {
+            if(this.w === true) {
+                if(parseInt(this.speedY) === 0) {
+                    if(this.canJUMP === true) {
+                        this.speedY = -10;
+                        this.canJUMP = false;
+                    }
                 }
             }
+
+            this.speedY += this.gravity;
+            
+            let xx = undefined;
+            let yy = undefined;
+            let v = undefined;
+
+            xx = this.hero.x
+            yy = this.hero.y + this.hero.size;
+
+            let flag = "FALSE";
+
+            v = this.hitPointWithWallsArray(xx, yy, wallsArray);
+            if(v !== false) {
+                flag = v;
+            }
+
+            xx = this.hero.x + this.hero.size;
+            yy = this.hero.y + this.hero.size;
+
+            v = this.hitPointWithWallsArray(xx, yy, wallsArray);
+            if(v !== false) {
+                flag = v;
+            }
+
+            if(flag !== "FALSE") {
+                const v = flag;
+                this.hero.y = parseInt(v.y - this.hero.size);
+                this.speedY = 0;
+                this.canJUMP = true;
+                return;
+            }
+
+            this.hero.y += this.speedY;
         }
-
-        this.speedY += this.gravity;
-        
-        let xx = undefined;
-        let yy = undefined;
-        let v = undefined;
-
-        xx = this.hero.x
-        yy = this.hero.y + this.hero.size;
-
-        let flag = "FALSE";
-
-        v = this.hitPointWithWallsArray(xx, yy, wallsArray);
-        if(v !== false) {
-            flag = v;
-        }
-
-        xx = this.hero.x + this.hero.size;
-        yy = this.hero.y + this.hero.size;
-
-        v = this.hitPointWithWallsArray(xx, yy, wallsArray);
-        if(v !== false) {
-            flag = v;
-        }
-
-        if(flag !== "FALSE") {
-            const v = flag;
-            this.hero.y = parseInt(v.y - this.hero.size);
-            this.speedY = 0;
-            this.canJUMP = true;
-            return;
-        }
-
-        this.hero.y += this.speedY;
     }
 
     getHero() {

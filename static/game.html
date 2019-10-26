@@ -34,6 +34,13 @@
             cursor: pointer;
         }
 
+        #controlDialogBtn {
+            width: 250px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
         #bottomBox {
            position: absolute;
            left: 10px;
@@ -45,6 +52,7 @@
 
         #dialogBox {
             padding: 10px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -53,10 +61,15 @@
 <canvas id = "can" width = "800px" height = "600px"></canvas>
 
 <div id = "rightBox">
-    <textarea id = "codeInputElement"></textarea>
-    <br>
-    <br>
-    <button id = "runCodeBtn">Запустить код</button>
+    <div id = "codeInputBox">
+        <textarea id = "codeInputElement"></textarea>
+        <br>
+        <br>
+        <button id = "runCodeBtn">Запустить код</button>
+        <br>
+        <br>
+    </div>
+    <button id = "controlDialogBtn">Диалог</button>
 </div>
 
 <div id = "bottomBox">

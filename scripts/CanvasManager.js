@@ -46,6 +46,20 @@ export default class CanvasManager {
         });
     }
 
+    drawTask(task) {
+        this.holst.lineWidth = 2;
+        this.holst.strokeStyle = "#0000FF";
+        this.simpleRectangle(
+            task.x, task.y, task.size, task.size,
+        );
+    }
+
+    drawTasksArray(taskArray) {
+        taskArray.forEach((task) => {
+            this.drawTask(task);
+        });
+    }
+
     drawHero(hero) {
         this.holst.lineWidth = 3;
         this.holst.strokeStyle = "#00FF00";
