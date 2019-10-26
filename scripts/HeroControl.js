@@ -23,6 +23,8 @@ export default class HeroControl {
         ////
         this.speedY = 0;
         this.speedX = 7;
+        ////
+        this.last = "right";
     }
 
     hitPointWall(wall, xx, yy) {
@@ -65,11 +67,17 @@ export default class HeroControl {
     moveLeft(canvasManager) {
         this.hero.x -= this.speedX;
         canvasManager.moveDeltaX(this.speedX);
+        this.last = "left";
     }
 
     moveRight(canvasManager) {
         this.hero.x += this.speedX;
         canvasManager.moveDeltaX(-this.speedX);
+        this.last = "right";
+    }
+
+    getLast() {
+        return this.last;
     }
 
     moveX(wallsArray, canvasManager) {

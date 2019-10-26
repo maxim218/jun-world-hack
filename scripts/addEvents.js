@@ -23,7 +23,8 @@ export default function addEvents(domElements, actionObjects) {
         actionObjects.heroControl.moveY(getWallsArray());
         actionObjects.canvasManager.drawBackground();
         actionObjects.canvasManager.drawWallsArray(getWallsArray());
-        actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero());
+        const last = actionObjects.heroControl.getLast() + "";
+        actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero(), last);
         actionObjects.canvasManager.drawTasksArray(getTaskersArr());
         actionObjects.heroControl.renderTask(getTaskersArr(), domElements.dialogBox, domElements.rightBox);
     }, 30);
