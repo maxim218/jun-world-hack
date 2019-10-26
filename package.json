@@ -5,13 +5,28 @@
   "main": "index.js",
   "scripts": {
     "prestart": "webpack",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "webpack --mode development --watch",
+    "release": "webpack --run-prod"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.6",
+    "preact": "^10.0.1",
+    "preact-router": "^3.1.0"
+  },
+  "devDependencies": {
     "express": "^4.17.1",
-    "webpack": "^3.5.0"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.32.2",
+    "webpack-command": "^0.4.2"
   }
 }

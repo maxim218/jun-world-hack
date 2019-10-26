@@ -1,95 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset = "UTF-8">
-    <title>Jun World</title>
-    <style>
-        body {
-            padding: 0px;
-            margin: 0px;
-            background: #333;
-        }
+    <meta charset="UTF-8">
+    <title>JunWorld</title>
 
-        #can {
-            position: absolute;
-            left: 10px;
-            top: 10px;
-        }
-
-        #rightBox {
-            position: absolute;
-            left: 830px;
-            top: 10px;
-        }
-
-        #codeInputElement {
-            min-width: 250px;
-            min-height: 500px;
-            font-size: 20px;
-            margin: 0;
-            width: 285px;
-            height: 597px;
-            background: rgb(82, 44, 82);
-            color: white;
-            font-weight: 700;
-            font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-            border: 2px solid wheat;
-        }
-
-        #runCodeBtn {
-            width: 290px;
-            height: 50px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        #controlDialogBtn {
-            width: 290px;
-            height: 50px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        #bottomBox {
-           position: absolute;
-            left: 10px;
-            top: 630px;
-            width: 800px;
-            height: 100px;
-            background: #333;
-            color: wheat;
-            border: 2px solid wheat;
-            border-radius: 0 65px 65px 65px;
-            font-family: sans-serif;
-        }
-
-        #dialogBox {
-            padding: 10px;
-            font-size: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-
-<canvas id = "can" width = "800px" height = "600px"></canvas>
-
-<div id = "rightBox">
-    <div id = "codeInputBox">
-        <textarea id = "codeInputElement"></textarea>
-        <br>
-        <br>
-        <button id = "runCodeBtn">Запустить код</button>
-        <br>
-        <br>
-    </div>
-    <button id = "controlDialogBtn">Диалог</button>
-</div>
-
-<div id = "bottomBox">
-    <div id = "dialogBox"></div>
-</div>
-
-<script src = "code.js"></script>
-    
+<div id="content"></div>
+<script src="/menu.min.js"></script>
 </body>
 </html>
