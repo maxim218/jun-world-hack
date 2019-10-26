@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,11 +68,28 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = global;
+
+
+const GLOBAL = {
+    dialog: true,
+};
+
+function global() {
+    return GLOBAL;
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getElement__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CanvasManager__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addEvents__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getElement__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CanvasManager__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addEvents__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(7);
 
 
 
@@ -88,6 +105,7 @@ window.onload = function() {
     const codeInputElement = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("codeInputElement");
     const dialogBox = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("dialogBox");
     const runCodeBtn = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("runCodeBtn");
+    const controlDialogBtn = Object(__WEBPACK_IMPORTED_MODULE_0__getElement__["a" /* default */])("controlDialogBtn");
 
     const domElements = {
         can,
@@ -96,6 +114,7 @@ window.onload = function() {
         codeInputElement,
         dialogBox,
         runCodeBtn,
+        controlDialogBtn,
     };
 
     const canvasManager = new __WEBPACK_IMPORTED_MODULE_1__CanvasManager__["a" /* default */](can);
@@ -111,7 +130,7 @@ window.onload = function() {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125,7 +144,7 @@ function getElement(id) {
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -204,13 +223,15 @@ class CanvasManager {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addEvents;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getWallsArray__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTaskersArr__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getWallsArray__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTaskersArr__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global__ = __webpack_require__(0);
+
 
 
 
@@ -218,6 +239,10 @@ class CanvasManager {
 
 function addEvents(domElements, actionObjects) {
     console.log("Call addEvents");
+
+    domElements.controlDialogBtn.onclick = function() {
+        Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().dialog = !Object(__WEBPACK_IMPORTED_MODULE_2__global__["a" /* default */])().dialog;
+    };
 
 
     let intervalObj = setInterval(() => {
@@ -227,13 +252,13 @@ function addEvents(domElements, actionObjects) {
         actionObjects.canvasManager.drawWallsArray(Object(__WEBPACK_IMPORTED_MODULE_0__getWallsArray__["a" /* default */])());
         actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero());
         actionObjects.canvasManager.drawTasksArray(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])());
-        actionObjects.heroControl.renderTask(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])(), domElements.dialogBox);
+        actionObjects.heroControl.renderTask(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])(), domElements.dialogBox, domElements.controlDialogBtn);
     }, 30);
 }
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -255,7 +280,7 @@ function getWallsArray() {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -286,10 +311,13 @@ function getTaskersArr() {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(0);
+
+
 
 
 class HeroControl {
@@ -324,7 +352,7 @@ class HeroControl {
         return false;
     }
 
-    renderTask(tasksArray, dialogBox) {
+    renderTask(tasksArray, dialogBox, controlDialogBtn) {
         const xx = this.hero.x + this.hero.size / 2;
         const yy = this.hero.y + this.hero.size / 2;
         dialogBox.innerHTML = "";
@@ -334,6 +362,11 @@ class HeroControl {
                 dialogBox.innerHTML = task.text;
             }
         });
+
+        if(dialogBox.innerHTML) 
+            controlDialogBtn.hidden = false;
+        else 
+            controlDialogBtn.hidden = true;
     }
 
     hitPointWithWallsArray(xx, yy, wallsArray) {
@@ -356,66 +389,70 @@ class HeroControl {
     }
 
     moveX(wallsArray, canvasManager) {
-        if(this.a === true) {
-            const xx = this.hero.x - this.speedX;
-            const yy = this.hero.y + this.hero.size;
-            if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
-                this.moveLeft(canvasManager);
-            }
-        } 
+        if(Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().dialog) {
+            if(this.a === true) {
+                const xx = this.hero.x - this.speedX;
+                const yy = this.hero.y + this.hero.size;
+                if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
+                    this.moveLeft(canvasManager);
+                }
+            } 
 
-        if(this.d === true) {
-            const xx = this.hero.x + this.hero.size + this.speedX;
-            const yy = this.hero.y + this.hero.size;
-            if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
-                this.moveRight(canvasManager);
+            if(this.d === true) {
+                const xx = this.hero.x + this.hero.size + this.speedX;
+                const yy = this.hero.y + this.hero.size;
+                if(this.hitPointWithWallsArray(xx, yy - 2, wallsArray) === false) {
+                    this.moveRight(canvasManager);
+                }
             }
         }
     }
 
     moveY(wallsArray) {
-        if(this.w === true) {
-            if(parseInt(this.speedY) === 0) {
-                if(this.canJUMP === true) {
-                    this.speedY = -10;
-                    this.canJUMP = false;
+        if(Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])().dialog) {
+            if(this.w === true) {
+                if(parseInt(this.speedY) === 0) {
+                    if(this.canJUMP === true) {
+                        this.speedY = -10;
+                        this.canJUMP = false;
+                    }
                 }
             }
+
+            this.speedY += this.gravity;
+            
+            let xx = undefined;
+            let yy = undefined;
+            let v = undefined;
+
+            xx = this.hero.x
+            yy = this.hero.y + this.hero.size;
+
+            let flag = "FALSE";
+
+            v = this.hitPointWithWallsArray(xx, yy, wallsArray);
+            if(v !== false) {
+                flag = v;
+            }
+
+            xx = this.hero.x + this.hero.size;
+            yy = this.hero.y + this.hero.size;
+
+            v = this.hitPointWithWallsArray(xx, yy, wallsArray);
+            if(v !== false) {
+                flag = v;
+            }
+
+            if(flag !== "FALSE") {
+                const v = flag;
+                this.hero.y = parseInt(v.y - this.hero.size);
+                this.speedY = 0;
+                this.canJUMP = true;
+                return;
+            }
+
+            this.hero.y += this.speedY;
         }
-
-        this.speedY += this.gravity;
-        
-        let xx = undefined;
-        let yy = undefined;
-        let v = undefined;
-
-        xx = this.hero.x
-        yy = this.hero.y + this.hero.size;
-
-        let flag = "FALSE";
-
-        v = this.hitPointWithWallsArray(xx, yy, wallsArray);
-        if(v !== false) {
-            flag = v;
-        }
-
-        xx = this.hero.x + this.hero.size;
-        yy = this.hero.y + this.hero.size;
-
-        v = this.hitPointWithWallsArray(xx, yy, wallsArray);
-        if(v !== false) {
-            flag = v;
-        }
-
-        if(flag !== "FALSE") {
-            const v = flag;
-            this.hero.y = parseInt(v.y - this.hero.size);
-            this.speedY = 0;
-            this.canJUMP = true;
-            return;
-        }
-
-        this.hero.y += this.speedY;
     }
 
     getHero() {
