@@ -32,6 +32,18 @@ export default class HeroControl {
         return false;
     }
 
+    renderTask(tasksArray, dialogBox) {
+        const xx = this.hero.x + this.hero.size / 2;
+        const yy = this.hero.y + this.hero.size / 2;
+        dialogBox.innerHTML = "";
+
+        tasksArray.forEach((task) => {
+            if(this.hitPointWall(task, xx, yy) === true) {
+                dialogBox.innerHTML = task.text;
+            }
+        });
+    }
+
     hitPointWithWallsArray(xx, yy, wallsArray) {
         for(let i = 0; i < wallsArray.length; i++) {
             if(this.hitPointWall(wallsArray[i], xx, yy) === true) {

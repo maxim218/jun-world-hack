@@ -72,7 +72,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getElement__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CanvasManager__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addEvents__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__HeroControl__ = __webpack_require__(6);
 
 
 
@@ -177,6 +177,20 @@ class CanvasManager {
         });
     }
 
+    drawTask(task) {
+        this.holst.lineWidth = 2;
+        this.holst.strokeStyle = "#0000FF";
+        this.simpleRectangle(
+            task.x, task.y, task.size, task.size,
+        );
+    }
+
+    drawTasksArray(taskArray) {
+        taskArray.forEach((task) => {
+            this.drawTask(task);
+        });
+    }
+
     drawHero(hero) {
         this.holst.lineWidth = 3;
         this.holst.strokeStyle = "#00FF00";
@@ -196,6 +210,8 @@ class CanvasManager {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getWallsArray__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTaskersArr__ = __webpack_require__(5);
+
 
 
 
@@ -210,6 +226,8 @@ function addEvents(domElements, actionObjects) {
         actionObjects.canvasManager.drawBackground();
         actionObjects.canvasManager.drawWallsArray(Object(__WEBPACK_IMPORTED_MODULE_0__getWallsArray__["a" /* default */])());
         actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero());
+        actionObjects.canvasManager.drawTasksArray(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])());
+        actionObjects.heroControl.renderTask(Object(__WEBPACK_IMPORTED_MODULE_1__getTaskersArr__["a" /* default */])(), domElements.dialogBox);
     }, 30);
 }
 
@@ -238,6 +256,37 @@ function getWallsArray() {
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getTaskersArr;
+
+
+const arr = [];
+
+function addToArr(x, y, text, testsArr) {
+    const size = 90;
+    const w = size;
+    const h = size;
+    arr.push({
+        x, y, text, testsArr, size, w, h
+    });
+}
+
+addToArr(690, 470, " Функция для расчета суммы чисел main(a, b) ", [
+
+]);
+
+addToArr(-30, 470, " Функция для получения наибольшего из двух чисел main(a, b) ", [
+
+]);
+
+function getTaskersArr() {
+    return arr;
+}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -273,6 +322,18 @@ class HeroControl {
             }
         }
         return false;
+    }
+
+    renderTask(tasksArray, dialogBox) {
+        const xx = this.hero.x + this.hero.size / 2;
+        const yy = this.hero.y + this.hero.size / 2;
+        dialogBox.innerHTML = "";
+
+        tasksArray.forEach((task) => {
+            if(this.hitPointWall(task, xx, yy) === true) {
+                dialogBox.innerHTML = task.text;
+            }
+        });
     }
 
     hitPointWithWallsArray(xx, yy, wallsArray) {
