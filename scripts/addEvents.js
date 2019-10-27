@@ -27,5 +27,9 @@ export default function addEvents(domElements, actionObjects) {
         actionObjects.canvasManager.drawHero(actionObjects.heroControl.getHero(), last);
         actionObjects.canvasManager.drawTasksArray(getTaskersArr());
         actionObjects.heroControl.renderTask(getTaskersArr(), domElements.dialogBox, domElements.rightBox);
+        const tasksArr = getTaskersArr();
+        const wallsArr = getWallsArray();
+        console.log(tasksArr.length + " _____" + wallsArr.length);
+        if(tasksArr[0].y > 900) wallsArr[0].y = 700;
     }, 30);
 }

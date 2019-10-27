@@ -6,6 +6,8 @@ function addWall(x, y, w, h) {
     arr.push({x, y, w, h});
 }
 
+addWall(1500, 200, 200, 450);
+
 addWall(100, 400, 150, 160);
 addWall(500, 300, 150, 260);
 addWall(950, 400, 150, 160);

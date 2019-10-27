@@ -11,6 +11,13 @@ function addToArr(x, y, text, testsArr) {
     });
 }
 
+addToArr(1250, 470, " Только истина сломает стену ", [
+    {
+        f: "main()",
+        r: true,
+    }
+]);
+
 addToArr(690, 470, " Функция для расчета суммы чисел main(a, b) ", [
     {
         f: "main(2, 3)",
