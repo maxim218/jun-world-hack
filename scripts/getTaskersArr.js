@@ -11,14 +11,14 @@ function addToArr(x, y, text, testsArr) {
     });
 }
 
-addToArr(1250, 470, " Только истина сломает стену ", [
+addToArr(1250, 470, " Only the truth will break the wall ", [
     {
         f: "main()",
         r: true,
     }
 ]);
 
-addToArr(690, 470, " Функция для расчета суммы чисел main(a, b) ", [
+addToArr(690, 470, " Function to get the sum of integers main(a, b) ", [
     {
         f: "main(2, 3)",
         r: 5,
@@ -33,7 +33,7 @@ addToArr(690, 470, " Функция для расчета суммы чисел 
     }
 ]);
 
-addToArr(-30, 470, " Функция для получения наибольшего из двух чисел main(a, b) ", [
+addToArr(-30, 470, " Function to get the maximum number of two numbers main(a, b) ", [
     {
         f: "main(9, 3)",
         r: 9,
