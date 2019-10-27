@@ -1,28 +1,54 @@
 body {
   background-color: #000000;
-  background-image: url(/assets/bg.jpg);
+  background-image: url(/assets/bg.jpeg);
+  background-size: cover;/
+  height: 100vh;
+  /*background-image: linear-gradient(to top right, rgb(217, 149, 46), rgb(204, 140, 52), rgb(192, 130, 59), rgb(179, 121, 65), rgb(167, 111, 71), rgb(154, 102, 77), rgb(142, 92, 84), rgb(129, 83, 90), rgb(117, 73, 96), rgb(104, 64, 102), rgb(92, 54, 109), rgb(79, 45, 115));;*/
+}
+
+.projName {
+  margin: 40px;
+}
+
+.page-menu {
+  margin-top: 10%;
+  display: flex;
+  padding-right: 100px;
+  background-image: linear-gradient(to top right, rgb(217, 149, 46), rgb(204, 140, 52), rgb(192, 130, 59), rgb(179, 121, 65), rgb(167, 111, 71), rgb(154, 102, 77), rgb(142, 92, 84), rgb(129, 83, 90), rgb(117, 73, 96), rgb(104, 64, 102), rgb(92, 54, 109), rgb(79, 45, 115));;
+}
+
+.header-box {
+  flex: 1;
+}
+
+.img-header {
+  width: 600px;
+  height: auto;
+  float: right;
 }
 
 .menu-box {
-  width: 300px;
+  flex: 2;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 30% auto 0;
 }
-
 
 .menu-box .menu-btn {
   width: 100%;
-  height: 30px;
   text-decoration: none;
-  padding-top: 9px;
-  color: #a675b3;
+  padding: 16px;
+  color: #ffffff;
   text-align: center;
   line-height: 20px;
   display: block;
-  margin: 20px auto;
-  font: normal 17px arial;
-  background-image: linear-gradient(#3b2751, #271739);
+  margin: 20px;
+  font: normal 38px arial;
+  background: #eea25a;
+  border-radius: 30px;
+}
+
+.menu-box .menu-btn:hover {
+  background: #eea04a;
 }
