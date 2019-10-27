@@ -11,7 +11,6 @@ class MainMenu extends Component {
                     <div className="menu-box">
                         <div align="center" className="projName"><img src="https://x-lines.ru/letters/i/cyrillictechno/0025/ffffff/60/0/jj4shi5xqjsge.png"/></div>
                         <a className="menu-btn" href="/game.html">Start</a>
-                        <a className="menu-btn" href="/levels/">Levels</a>
                     </div>
                 </div>
             </div>

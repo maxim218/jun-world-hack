@@ -1,9 +1,6 @@
 body {
-  background-color: #000000;
-  background-image: url(/assets/bg.jpeg);
-  background-size: cover;/
+  background-color: #333;
   height: 100vh;
-  /*background-image: linear-gradient(to top right, rgb(217, 149, 46), rgb(204, 140, 52), rgb(192, 130, 59), rgb(179, 121, 65), rgb(167, 111, 71), rgb(154, 102, 77), rgb(142, 92, 84), rgb(129, 83, 90), rgb(117, 73, 96), rgb(104, 64, 102), rgb(92, 54, 109), rgb(79, 45, 115));;*/
 }
 
 .projName {
